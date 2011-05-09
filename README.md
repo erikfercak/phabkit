@@ -1,4 +1,4 @@
-# Phawkit
+# Phabkit
 PHP wrapper around https://github.com/thoughtbot/capybara-webkit QtWebkit server.
 
 ## Warning
