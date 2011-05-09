@@ -1,0 +1,27 @@
+HTTP/1.0 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<html>
+    <body>
+        <form action="/" method="GET">
+            <input type="text" name="foo" value="bar"/>
+            <input type="checkbox" name="checkedbox" value="1" checked="checked"/>
+            <input type="checkbox" name="uncheckedbox" value="2"/>
+            <select name="animal">
+                <option id="select-option-monkey">Monkey</option>
+                <option id="select-option-capybara" selected="selected">Capybara</option>
+            </select>
+            <select name="toppings" multiple="multiple">
+                <optgroup label="Mediocre Toppings">
+                    <option selected="selected" id="topping-apple">Apple</option>
+                    <option selected="selected" id="topping-banana">Banana</option>
+                </optgroup>
+                <optgroup label="Best Toppings">
+                    <option selected="selected" id="topping-cherry">Cherry</option>
+                </optgroup>
+            </select>
+            <textarea id="only-textarea">what a wonderful area for text</textarea>
+            <input type="radio" id="only-radio" value="1"/>
+        </form>
+    </body>
+</html>

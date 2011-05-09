@@ -1,0 +1,25 @@
+HTTP/1.0 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<html>
+    <body>
+        <div id="change">Change me</div>
+        <div id="mouseup">Push me</div>
+        <div id="mousedown">Release me</div>
+        <script type="text/javascript">
+            document.getElementById("change").
+                addEventListener("change", function () {
+                    this.className = "triggered";
+                });
+            document.getElementById("mouseup").
+                addEventListener("mouseup", function () {
+                    this.className = "triggered";
+                });
+            document.getElementById("mousedown").
+                addEventListener("mousedown", function () {
+                    this.className = "triggered";
+                });
+        </script>
+        <a href="/next">Next</a>
+    </body>
+</html>
