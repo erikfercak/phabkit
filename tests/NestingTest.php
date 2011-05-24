@@ -2,26 +2,10 @@
 
 require_once dirname(__FILE__) . '/../src/Browser.php';
 require_once dirname(__FILE__) . '/../src/Node.php';
+require_once dirname(__FILE__) . '/Phabkit_TestCase.php';
 
-class NestingTest extends PHPUnit_Framework_TestCase
+class NestingTest extends Phabkit_TestCase
 {
-    private $browser;
-
-    private $host = 'localhost';
-    private $port = 3334;
-
-    public function setUp()
-    {
-        proc_open(
-            'nc -l ' . $this->port . ' > /dev/null < '
-            . dirname(__FILE__) . '/html/nesting.html &',
-            array(), $foo
-        );
-        usleep(50000);
-        $this->browser = new Browser();
-        $this->browser->visit('http://' . $this->host . ':' . $this->port . '/');
-    }
-
     public function testEvaluatesNestedXpathExpressions()
     {
       $parent = $this->browser->findFirst("//*[@id='parent']");
