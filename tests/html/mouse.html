@@ -6,7 +6,17 @@ Content-Type: text/html; charset=UTF-8
         <div id="change">Change me</div>
         <div id="mouseup">Push me</div>
         <div id="mousedown">Release me</div>
+        <form action="/" method="GET">
+          <select id="change_select" name="change_select">
+            <option value="1" id="option-1" selected="selected">one</option>
+            <option value="2" id="option-2">two</option>
+          </select>
+        </form>
         <script type="text/javascript">
+            document.getElementById("change_select").
+                addEventListener("change", function () {
+                    this.className = "triggered";
+                });
             document.getElementById("change").
                 addEventListener("change", function () {
                     this.className = "triggered";

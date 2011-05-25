@@ -24,6 +24,7 @@ Content-Type: text/html; charset=UTF-8
                 var element = elements[i];
                 element.addEventListener("focus", recordEvent);
                 element.addEventListener("keydown", recordEvent);
+                element.addEventListener("keypress", recordEvent);
                 element.addEventListener("keyup", recordEvent);
                 element.addEventListener("change", recordEvent);
                 element.addEventListener("blur", recordEvent);

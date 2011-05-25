@@ -187,4 +187,18 @@ class FormTest extends Phabkit_TestCase
             $this->uncheckedBox->isChecked()
         );
     }
+
+    public function testKnowsADisabledInputIsDisabled()
+    {
+        $this->assertTrue(
+            $this->browser->findFirst("//input[@id='disabled_input']")->isDisabled()
+        );
+    }
+
+    public function testKnowsANotDisabledInputIsNotDisabled()
+    {
+        $this->assertFalse(
+            $this->browser->findFirst("//input[@name='foo']")->isDisabled()
+        );
+    }
 }

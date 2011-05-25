@@ -217,6 +217,13 @@ class BasicTest extends Phabkit_TestCase
         );
     }
 
+    public function testReadsDisabledProperty()
+    {
+        $this->assertTrue(
+            $this->browser->findFirst('//input')->isDisabled()
+        );
+    }
+
     public function testFindsVisibleElements()
     {
         $this->assertTrue(

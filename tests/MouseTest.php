@@ -27,6 +27,20 @@ class MouseTest extends Phabkit_TestCase
         );
     }
 
+    public function testItFiresAChangeOnSelect()
+    {
+        $select = $this->browser->findFirst('//select');
+        $this->assertEquals('1', $select->value());
+
+        $option = $this->browser->findFirst("//option[@id='option-2']");
+        $option->selectOption();
+        $this->assertEquals('2', $select->value());
+
+        $this->assertNotEmpty(
+            $this->browser->findFirst('//select[@class="triggered"]')
+        );
+    }
+
     public function testIfFiresDragEvents()
     {
         $draggable = $this->browser->findFirst("//*[@id='mousedown']");

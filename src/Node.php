@@ -110,6 +110,12 @@ class Node
         return (($result == 'true') ? TRUE : FALSE);
     }
 
+    public function isDisabled()
+    {
+        $result = $this->attribute('disabled');
+        return (($result == 'true') ? TRUE : FALSE);
+    }
+
     private function isMultiSelect()
     {
         return (

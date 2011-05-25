@@ -6,7 +6,9 @@ require_once dirname(__FILE__) . '/Phabkit_TestCase.php';
 
 class FormEventsTest extends Phabkit_TestCase
 {
-    protected function getEvents()
+    protected $testValue = 'newvalue';
+
+    protected function actualEvents()
     {
         $out = '';
         foreach ($this->browser->find('//li') as $li) {
@@ -18,33 +20,45 @@ class FormEventsTest extends Phabkit_TestCase
         return $out;
     }
 
+    protected function expectedTypingEvents()
+    {
+        $out = '';
+        for ($i = 0; $i < mb_strlen($this->testValue); $i++) {
+            if ($out != '') {
+                $out .= ' ';
+            }
+            $out .= 'keydown keypress keyup';
+        }
+        return $out;
+    }
+
     public function testTriggersTextInputEvents()
     {
-        $this->browser->findFirst("//input[@type='text']")->set('newvalue');
+        $this->browser->findFirst("//input[@type='text']")->set($this->testValue);
 
         $this->assertEquals(
-            $this->getEvents(),
-            'focus keydown keyup change blur'
+            'focus ' . $this->expectedTypingEvents() . ' change blur',
+            $this->actualEvents()
         );
     }
 
     public function testTriggersTextareaEvents()
     {
-        $this->browser->findFirst('//textarea')->set('newvalue');
+        $this->browser->findFirst('//textarea')->set($this->testValue);
 
         $this->assertEquals(
-            $this->getEvents(),
-            'focus keydown keyup change blur'
+            'focus ' . $this->expectedTypingEvents() . ' change blur',
+            $this->actualEvents()
         );
     }
 
     public function testTriggersPasswordInputEvents()
     {
-        $this->browser->findFirst("//input[@type='password']")->set('newvalue');
+        $this->browser->findFirst("//input[@type='password']")->set($this->testValue);
 
         $this->assertEquals(
-            $this->getEvents(),
-            'focus keydown keyup change blur'
+            'focus ' . $this->expectedTypingEvents() . ' change blur',
+            $this->actualEvents()
         );
     }
 
@@ -53,8 +67,8 @@ class FormEventsTest extends Phabkit_TestCase
         $this->browser->findFirst("//input[@type='radio']")->set(TRUE);
 
         $this->assertEquals(
-            $this->getEvents(),
-            'click'
+            'click',
+            $this->actualEvents()
         );
     }
 
@@ -63,8 +77,8 @@ class FormEventsTest extends Phabkit_TestCase
         $this->browser->findFirst("//input[@type='checkbox']")->set(TRUE);
 
         $this->assertEquals(
-            $this->getEvents(),
-            'click'
+            'click',
+            $this->actualEvents()
         );
     }
 }
